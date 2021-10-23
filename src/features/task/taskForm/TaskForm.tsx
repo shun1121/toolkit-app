@@ -1,20 +1,19 @@
-import React, {useState} from 'react'
+import React from 'react'
+import { useDispatch } from 'react-redux'
 import { useForm } from 'react-hook-form'
 import TextField from '@material-ui/core/TextField';
 import styles from './TaskForm.module.scss'
-// import { register } from '../../../serviceWorker';
+import { createTask } from '../taskSlice' //reducer?
 
 type Inputs = {
   taskTitle: string;
 }
 
 const TaskForm: React.FC = () => {
+  const dispatch = useDispatch()
   const { register, handleSubmit, reset } = useForm();
-  const [text, setText] = useState("")
   const handleCreate = (data: Inputs) => {
-    console.log("aaaa")
-    console.log(data)
-    setText("aaaa")
+    dispatch(createTask(data.taskTitle))
     reset()
   }
 
@@ -34,7 +33,6 @@ const TaskForm: React.FC = () => {
           name="taskTitle"
         />
       </form>
-      <p>{text}</p>
     </div>
   );
 }
