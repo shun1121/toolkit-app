@@ -4,6 +4,7 @@ import taskReducer from '../features/task/taskSlice';
 
 export const store = configureStore({
   reducer: {
+    // createSliceで作ったreducerたちを合体させたもの
     counter: counterReducer,
     task: taskReducer,
   },
